@@ -3,10 +3,10 @@ const RecipeTemplate = ` Reemplaza los valores de cada campo con la información
 
   Tipo de comida: (Tipo de comida)
 
-  Ingredientes:
+  Ingredientes: 
   1. Ingrediente 1: Cantidad y unidad
   2. Ingrediente 2: Cantidad y unidad
-  (Continúa con el resto de los ingredientes)
+  n. Ingrediente n: Cantidad y unidad (mantén el formato (n. "espacio" ingrediente n: cantidad y unidad))
 
   Tamaño de la porción por persona: (Tamaño de la porción)
 
@@ -17,6 +17,6 @@ const RecipeTemplate = ` Reemplaza los valores de cada campo con la información
   Instrucciones:
   1. Instrucción 1
   2. Instrucción 2
-  (Continúa con el resto de las instrucciones)`
+  n. Instrucción n (mantén el formato (n."espacio" instrucción n))`
 
 export default RecipeTemplate
