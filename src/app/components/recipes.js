@@ -21,7 +21,6 @@ export function CreateRecipe() {
   })
   const [parsedRecipe, setParsedRecipe] = useState(null)
   const [recipes, setRecipes] = useState([])
-  console.log('Recipes:', recipes)
   const [selectedRecipe, setSelectedRecipe] = useState(null)
   const [formattedRecipe, setFormattedRecipe] = useState(null)
   const { completion, input, handleInputChange, handleSubmit, isLoading } =
