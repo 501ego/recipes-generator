@@ -19,7 +19,7 @@ export default function SideMenu({ recipes, setSelectedRecipe }) {
   return (
     <div
       ref={menuRef}
-      className="absolute top-0 left-0 p-1 text-zinc-900 max-w-[260px]"
+      className="fixed top-0 left-0 p-1 text-zinc-900 max-w-[260px]"
     >
       <button onClick={() => setIsOpen(!isOpen)} className="p-2">
         <svg
