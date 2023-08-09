@@ -2,7 +2,7 @@ const RecipeTemplate = ` Reemplaza los valores de cada campo con la información
   Título: (Título de la receta)
 
   Tipo de comida: (Tipo de comida)
-
+  
   Ingredientes: 
   1. Ingrediente 1: Cantidad y unidad
   2. Ingrediente 2: Cantidad y unidad

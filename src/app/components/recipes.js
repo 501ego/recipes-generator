@@ -80,7 +80,9 @@ export function CreateRecipe() {
           await deleteRecipeFromDB(recipeToDelete._id)
           setRecipeState({ state: 'unsaved', value: true })
           setFormattedRecipe(null)
+          setSelectedRecipe(null)
           fetchRecipes()
+          window.location.reload()
         } catch (error) {
           console.error('Error deleting the recipe:', error)
         }
@@ -104,7 +106,7 @@ export function CreateRecipe() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-6 h-6 text-yellow-500 hover:text-yellow-600"
+                  className="w-6 h-6 text-indigo-400 hover:text-indigo-500"
                 >
                   <path
                     fillRule="evenodd"
@@ -121,7 +123,7 @@ export function CreateRecipe() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-6 h-6 text-rose-500 hover:text-rose-600"
+                  className="w-6 h-6 text-indigo-400 hover:text-indigo-500"
                 >
                   <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM20.25 5.507v11.561L5.853 2.671c.15-.043.306-.075.467-.094a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93zM3.75 21V6.932l14.063 14.063L12 18.088l-7.165 3.583A.75.75 0 013.75 21z" />
                 </svg>
@@ -138,9 +140,15 @@ export function CreateRecipe() {
     if (completion || formattedRecipe !== null) return null
 
     return (
-      <h1 className="font-bold text-center p-1">
-        Ingrese los Ingredientes que tenga Disponibles en su despensa.
-      </h1>
+      <article>
+        <h1 className="font-semibold text-center p-1 text-zinc-600">
+          Ingrese los Ingredientes que tenga Disponibles en su despensa.
+        </h1>
+        <p className="text-sm text-zinc-600">
+          También puede especificar el tipo de comida. Ejempo: Arroz, Tomate,
+          Palta, lentejas, tofu. Tipo de comida : cena
+        </p>
+      </article>
     )
   }
 
@@ -158,7 +166,7 @@ export function CreateRecipe() {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-6 h-6 text-rose-500 hover:text-rose-600"
+                className="w-6 h-6 text-indigo-400 hover:text-indigo-500"
               >
                 <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM20.25 5.507v11.561L5.853 2.671c.15-.043.306-.075.467-.094a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93zM3.75 21V6.932l14.063 14.063L12 18.088l-7.165 3.583A.75.75 0 013.75 21z" />
               </svg>

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 
 export default function SideMenu({ recipes, setSelectedRecipe }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [SubmenuIsOpen, setSubmenuIsOpen] = useState(false)
   const [showRecipes, setShowRecipes] = useState(false)
+
   const menuRef = useRef(null)
 
   const handleOutsideClick = e => {
@@ -31,47 +31,30 @@ export default function SideMenu({ recipes, setSelectedRecipe }) {
         >
           <path
             fillRule="evenodd"
-            d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+            d="M6 3a3 3 0 00-3 3v12a3 3 0 003 3h12a3 3 0 003-3V6a3 3 0 00-3-3H6zm1.5 1.5a.75.75 0 00-.75.75V16.5a.75.75 0 001.085.67L12 15.089l4.165 2.083a.75.75 0 001.085-.671V5.25a.75.75 0 00-.75-.75h-9z"
             clipRule="evenodd"
           />
         </svg>
       </button>
       {isOpen && (
-        <div className="mt-2 bg-white border rounded">
-          <button
-            onClick={() => setShowRecipes(!showRecipes)}
-            className="block px-4 py-2 text-sm hover:bg-indigo-200 font-bold w-full text-start"
-          >
-            Favoritos
-          </button>
-          {showRecipes && (
-            <div className="block">
-              {recipes.length > 0 ? (
-                recipes.map(recipe => (
-                  <button
-                    key={recipe._id}
-                    onClick={() => {
-                      setSelectedRecipe(recipe)
-                    }}
-                    className="block px-2 py-1 text-xs hover:bg-indigo-200 text-start w-full"
-                  >
-                    {recipe.name}
-                  </button>
-                ))
-              ) : (
-                <p className="block px-2 py-1 text-xs text-indigo-400">
-                  'No hay recetas'
-                </p>
-              )}
-            </div>
+        <div className="block bg-zinc-50">
+          {recipes.length > 0 ? (
+            recipes.map(recipe => (
+              <button
+                key={recipe._id}
+                onClick={() => {
+                  setSelectedRecipe(recipe)
+                }}
+                className="block px-2 py-1 text-xs text-zinc-500 font-semibold hover:bg-indigo-200 text-start w-full"
+              >
+                {recipe.name}
+              </button>
+            ))
+          ) : (
+            <p className="block px-2 py-1 text-xs text-indigo-400">
+              'No hay recetas'
+            </p>
           )}
-
-          <button
-            onClick={() => setSubmenuIsOpen(!SubmenuIsOpen)}
-            className="w-full text-start block px-4 py-2 text-sm hover:bg-indigo-200 font-bold"
-          >
-            Opciones
-          </button>
         </div>
       )}
     </div>
