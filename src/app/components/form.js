@@ -8,7 +8,7 @@ export default function Form({
   setFormattedRecipe,
 }) {
   return (
-    <section className="flex m-auto justify-start flex-wrap mb-2 md:w-[744px]">
+    <section className="flex justify-start flex-wrap mb-2 md:w-[744px]">
       <figure>
         <Image
           src="/chef-icon2.png"
@@ -41,7 +41,7 @@ export default function Form({
         <button
           aria-label="Enviar ingredientes"
           type="submit"
-          className="m-auto bg-indigo-400 hover:bg-indigo-500 text-zinc-900 font-semibold py-2 px-4 rounded-r-lg focus:outline-none border border-zinc-600 truncate"
+          className="bg-indigo-400 hover:bg-indigo-500 text-zinc-900 font-semibold py-2 px-4 rounded-r-lg focus:outline-none border border-zinc-600 truncate"
         >
           Crear
         </button>
