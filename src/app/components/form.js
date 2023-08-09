@@ -32,7 +32,7 @@ export default function Form({
             aria-label="Ingresar ingredientes"
             name="ingredients"
             type="text"
-            className=" px-4 border border-zinc-600 text-sm text-slate-500 rounded-l-lg flex-grow focus:outline-none"
+            className=" px-4 text-[16px] border border-zinc-600 text-sm text-slate-500 rounded-l-lg flex-grow focus:outline-none"
             placeholder='Ejemplo: "1 taza de harina de trigo"'
             value={input}
             onChange={handleInputChange}
