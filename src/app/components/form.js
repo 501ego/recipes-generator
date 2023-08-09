@@ -27,7 +27,7 @@ export default function Form({
         }}
         className="flex justify-center text-center mt-5 relative flex-grow"
       >
-        <label className="flex flex-grow">
+        <label className="flex flex-grow text-[16px]">
           <input
             aria-label="Ingresar ingredientes"
             name="ingredients"
