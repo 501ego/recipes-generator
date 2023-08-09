@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from 'openai-edge'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
-import RecipeTemplate from '../../components/template'
+import RecipeTemplate from '../../../../utils/template'
 
 export const runtime = 'edge'
 
@@ -15,7 +15,10 @@ function buildPrompt(prompt) {
     role: 'user',
     content:
       'Eres un chef vegano con conocimientos de cocina basados en libros de recetas. ' +
-      'Crea una receta utilizando únicamente los ingredientes que te proporcionaré a continuación, nada más: ' +
+      '1.- Solo acepta Ingredientes, cuelquier palabra que no sea un tipo de ingrediente es inválido' +
+      '2.- Asume que todos los ingredientes proporcionados son veganos.' +
+      '3.- Comprueba que haya al menos un ingrediente en mi promt, si no hay, no hagas nada y propone el resto de ingredientes. Si hay, prosigue.' +
+      '4.- Crea una receta utilizando únicamente los ingredientes que te proporcionaré a continuación, suma otros igredientes básicos tales como, agua, aceite, azúcar, sal, etc.: ' +
       message +
       ' .Aquí hay un ejemplo de cómo debes estructurar la receta vegana: ' +
       RecipeTemplate,
@@ -25,7 +28,6 @@ function buildPrompt(prompt) {
 export async function POST(request) {
   try {
     const { prompt } = await request.json()
-    console.log('prompt', buildPrompt(prompt))
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       stream: true,

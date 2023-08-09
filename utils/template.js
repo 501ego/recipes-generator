@@ -1,5 +1,5 @@
 const RecipeTemplate = ` Reemplaza los valores de cada campo con la información correspondiente a tu receta:
-  (Nombre del plato)
+  Título: (Título de la receta)
 
   Tipo de comida: (Tipo de comida)
 
