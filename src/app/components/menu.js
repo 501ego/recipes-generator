@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 
 export default function SideMenu({ recipes, setSelectedRecipe }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [showRecipes, setShowRecipes] = useState(false)
 
   const menuRef = useRef(null)
 
@@ -38,7 +37,7 @@ export default function SideMenu({ recipes, setSelectedRecipe }) {
       </button>
       {isOpen && (
         <div className="block bg-zinc-50">
-          {recipes.length > 0 ? (
+          {recipes !== [] && recipes.length > 0 ? (
             recipes.map(recipe => (
               <button
                 key={recipe._id}

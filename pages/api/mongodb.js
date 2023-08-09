@@ -1,6 +1,4 @@
-import { MongoClient } from 'mongodb'
-
-console.log('Current NODE_ENV:', process.env.NODE_ENV)
+import { MongoClient, ServerApiVersion } from 'mongodb'
 
 const uri = process.env.MONGODB_URI
 console.log('MongoDB URI:', uri)
@@ -8,6 +6,11 @@ console.log('MongoDB URI:', uri)
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
 }
 
 let client

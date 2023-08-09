@@ -21,6 +21,7 @@ export function CreateRecipe() {
   })
   const [parsedRecipe, setParsedRecipe] = useState(null)
   const [recipes, setRecipes] = useState([])
+  console.log('Recipes:', recipes)
   const [selectedRecipe, setSelectedRecipe] = useState(null)
   const [formattedRecipe, setFormattedRecipe] = useState(null)
   const { completion, input, handleInputChange, handleSubmit, isLoading } =
@@ -31,7 +32,6 @@ export function CreateRecipe() {
   const fetchRecipes = async () => {
     const recipes = await getRecipesFromDB()
     setRecipes(recipes)
-    console.log('Recipes fetched:', recipes.length)
   }
 
   useEffect(() => {
