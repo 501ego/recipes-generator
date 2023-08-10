@@ -183,7 +183,7 @@ export function CreateRecipe() {
         <SideMenu recipes={recipes} setSelectedRecipe={setSelectedRecipe} />
       </header>
       <div role="main" className="mx-auto flex flex-col px-2">
-        <section className="p-2 no-scrollbar ml-11 border bg-zinc-50 border-zinc-200 mt-1 text-zinc-900 rounded-md shadow-md shadow-zinc-500 mr-1 overflow-y-auto over max-h-[75vh] xxs:max-h-[90vh] md:w-[700px]">
+        <section className="p-2 no-scrollbar ml-11 border bg-zinc-50 border-zinc-200 mt-1 text-zinc-900 rounded-md shadow-md shadow-zinc-500 mr-1 overflow-y-auto over  max-h-[calc(70dvh)] xxs:max-h-[calc(89dvh)] md:w-[700px]">
           {renderCompletion()}
           {renderRecipePrompt()}
           {renderFormattedRecipe()}
