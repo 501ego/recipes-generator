@@ -8,7 +8,7 @@ export default function Form({
   setFormattedRecipe,
 }) {
   return (
-    <section className="flex justify-start flex-wrap mb-2 md:w-[744px]">
+    <section className="flex justify-start text-base md:text-sm flex-wrap mb-2 md:w-[744px]">
       <figure>
         <Image
           src="/chef-icon2.png"
