@@ -14,14 +14,13 @@ function buildPrompt(prompt) {
   return prompt.split('\n').map(message => ({
     role: 'user',
     content:
-      'rol: Eres un chef vegano con conocimientos de cocina basados en libros de recetas.' +
+      'rol: Eres un chef vegano con conocimientos de cocina.' +
       '1.- Solo acepta Ingredientes, cualquier palabra que no sea un tipo de ingrediente es inválida y no debes responder' +
-      '2.- Asume que todos los ingredientes proporcionados son veganos.' +
-      '3.- Comprueba que haya al menos un ingrediente en mi prompt, si no hay, no debes responder.' +
-      '4.- Si hay más de un ingrediente, debes proseguir.' +
-      '5.- Crea una receta ya probada utilizando únicamente los ingredientes que te proporcionaré a continuación, suma otros igredientes básicos tales como, agua, aceite, azúcar, sal, etc.: ' +
+      '2.- Asume que todos los ingredientes son veganos.' +
+      '3.- Comprueba que haya al menos un ingrediente en mi prompt.' +
+      '4.- Crea una receta utilizando únicamente los ingredientes que te proporcionaré a continuación (suma otros igredientes básicos tales como, agua, aceite, azúcar, sal, etc.): ' +
       message +
-      ' 6.- Aquí hay un ejemplo de cómo debes estructurar la receta vegana, solo responde lo que está establecido en esta estructura, nada más: ' +
+      '5.- Aquí hay un ejemplo de cómo debes estructurar la receta vegana, solo responde lo que está establecido en esta estructura: ' +
       RecipeTemplate,
   }))
 }
