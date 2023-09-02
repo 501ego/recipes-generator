@@ -20,7 +20,11 @@ export default async function handler(req, res) {
   try {
     switch (req.method) {
       case 'GET':
-        const data = await db.collection('recipe').find({}).toArray()
+        const userEmail = req.query.user
+        const data = await db
+          .collection('recipe')
+          .find({ user: userEmail })
+          .toArray()
         return res.json(data)
 
       case 'POST':

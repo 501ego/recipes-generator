@@ -1,4 +1,4 @@
-export function parseRecipe(completion) {
+export function parseRecipe(completion, user) {
   if (!completion) {
     throw new Error('No completion data provided.')
   }
@@ -45,6 +45,7 @@ export function parseRecipe(completion) {
   return JSON.stringify(
     {
       name,
+      user,
       type,
       ingredients,
       servingSize,

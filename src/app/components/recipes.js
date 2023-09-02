@@ -2,7 +2,8 @@
 
 import { useCompletion } from 'ai/react'
 import Form from './form'
-import SideMenu from './menu'
+import SideMenu from './sideMenu'
+import Login from './login'
 import { formatCompletion } from './formatter'
 import { parseRecipe } from '../../../utils/textToJson'
 import { formatRecipe } from '../../../utils/jsonToText'
@@ -15,6 +16,7 @@ import {
 import { useState, useEffect } from 'react'
 
 export function CreateRecipe() {
+  const [userData, setUserData] = useState(null)
   const [recipeState, setRecipeState] = useState({
     state: 'unsaved',
     value: false,
@@ -29,13 +31,37 @@ export function CreateRecipe() {
     })
   const formattedCompletion = formatCompletion(completion)
   const fetchRecipes = async () => {
-    const recipes = await getRecipesFromDB()
-    setRecipes(recipes)
+    const email = userData?.email
+    if (email) {
+      const recipes = await getRecipesFromDB(email)
+      if (recipes) {
+        setRecipes(recipes)
+      }
+    }
   }
+
+  const [userLogged, setUserLogged] = useState(
+    () => JSON.parse(localStorage.getItem('userLogged')) || false
+  )
+  useEffect(() => {
+    const storedUserData = localStorage.getItem('userData')
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData))
+    }
+  }, [])
+  useEffect(() => {
+    if (userData) {
+      localStorage.setItem('userData', JSON.stringify(userData))
+    }
+  }, [userData])
 
   useEffect(() => {
     fetchRecipes()
-  }, [])
+  }, [userData])
+
+  useEffect(() => {
+    localStorage.setItem('userLogged', JSON.stringify(userLogged))
+  }, [userLogged])
 
   //*
 
@@ -53,7 +79,7 @@ export function CreateRecipe() {
 
   useEffect(() => {
     if (!isLoading && completion.includes('Título')) {
-      const newParsedRecipe = parseRecipe(completion)
+      const newParsedRecipe = parseRecipe(completion, userData.email)
       setParsedRecipe(newParsedRecipe)
       setRecipeState(prevState => ({ ...prevState, value: true }))
     }
@@ -62,7 +88,7 @@ export function CreateRecipe() {
   const handleSaveClick = async () => {
     if (parsedRecipe) {
       try {
-        await saveRecipeToDB(parsedRecipe)
+        await saveRecipeToDB(parsedRecipe, userData.email)
         setRecipeState({ state: 'saved', value: true })
         fetchRecipes()
       } catch (error) {
@@ -179,23 +205,33 @@ export function CreateRecipe() {
 
   return (
     <main>
-      <header>
-        <SideMenu recipes={recipes} setSelectedRecipe={setSelectedRecipe} />
-      </header>
-      <div role="main" className="mx-auto flex flex-col px-2">
-        <section className="p-2 no-scrollbar ml-11 border bg-zinc-50 border-zinc-200 mt-1 text-zinc-900 rounded-md shadow-md shadow-zinc-500 mr-1 overflow-y-auto over  max-h-[calc(70dvh)] xxs:max-h-[calc(89dvh)] md:w-[700px]">
-          {renderCompletion()}
-          {renderRecipePrompt()}
-          {renderFormattedRecipe()}
-        </section>
-        <Form
-          input={input}
-          handleInputChange={handleInputChange}
-          handleSubmit={handleSubmit}
-          setRecipeState={setRecipeState}
-          setFormattedRecipe={setFormattedRecipe}
+      {!userLogged ? (
+        <Login
+          setUserLogged={setUserLogged}
+          userData={userData}
+          setUserData={setUserData}
         />
-      </div>
+      ) : (
+        <>
+          <header>
+            <SideMenu recipes={recipes} setSelectedRecipe={setSelectedRecipe} />
+          </header>
+          <div role="main" className="mx-auto flex flex-col px-2">
+            <section className="p-2 no-scrollbar ml-11 border bg-zinc-50 border-zinc-200 mt-1 text-zinc-900 rounded-md shadow-md shadow-zinc-500 mr-1 overflow-y-auto over  max-h-[calc(70dvh)] xxs:max-h-[calc(89dvh)] md:w-[700px]">
+              {renderCompletion()}
+              {renderRecipePrompt()}
+              {renderFormattedRecipe()}
+            </section>
+            <Form
+              input={input}
+              handleInputChange={handleInputChange}
+              handleSubmit={handleSubmit}
+              setRecipeState={setRecipeState}
+              setFormattedRecipe={setFormattedRecipe}
+            />
+          </div>
+        </>
+      )}
     </main>
   )
 }
