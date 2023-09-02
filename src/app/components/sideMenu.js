@@ -45,6 +45,12 @@ export default function SideMenu({ recipes, setSelectedRecipe }) {
           </button>
           {isOpen && (
             <div className="block bg-zinc-50">
+              <button
+                className="block px-2 py-1 text-xs text-indigo-400 hover:text-indigo-600"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
               {recipes !== [] && recipes.length > 0 ? (
                 recipes.map(recipe => (
                   <button
@@ -64,14 +70,6 @@ export default function SideMenu({ recipes, setSelectedRecipe }) {
               )}
             </div>
           )}
-        </div>
-        <div className="fixed top-0 right-0 p-1 px-5 text-zinc-900 z-10">
-          <button
-            className="p-2 text-indigo-400 hover:text-indigo-500"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
         </div>
       </article>
     </section>
